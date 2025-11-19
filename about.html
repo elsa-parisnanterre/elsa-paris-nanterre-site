@@ -2,75 +2,334 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Qui sommes-nous ? | ELSA Paris-Nanterre</title>
+    <title>À propos | ELSA Paris-Nanterre</title>
     <style>
+        :root {
+            --elsa-blue: #004C97;
+            --elsa-light: #f5f6f7;
+            --text-main: #222222;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f6f7;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: var(--elsa-light);
+            color: var(--text-main);
         }
+
         header {
-            background-color: #004C97;
+            background-color: var(--elsa-blue);
             color: white;
-            padding: 15px 20px;
+            padding: 14px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
+
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-block img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-text span:first-child {
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            font-size: 14px;
+        }
+
+        .logo-text span:last-child {
+            font-size: 11px;
+            opacity: 0.9;
+        }
+
         nav a {
             color: white;
-            margin-right: 20px;
+            margin-left: 22px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 14px;
         }
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
+
+        nav a:hover {
+            text-decoration: underline;
         }
-        h1 {
-            color: #004C97;
+
+        .hero {
+            max-width: 980px;
+            margin: 40px auto 0 auto;
+            padding: 32px 32px 36px 32px;
+            background-color: white;
+            border-radius: 14px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .hero-kicker {
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--elsa-blue);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .hero-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            color: var(--elsa-blue);
+        }
+
+        .hero-subtitle {
+            font-size: 15px;
+            max-width: 620px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .hero-meta {
+            margin-top: 18px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .grid {
+            max-width: 980px;
+            margin: 24px auto 60px auto;
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+            gap: 22px;
+            padding: 0 4px;
+        }
+
+        @media (max-width: 860px) {
+            .grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            nav a {
+                margin-left: 0;
+                margin-right: 18px;
+            }
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 14px;
+            padding: 26px 28px 30px 28px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+        }
+
+        h1, h2, h3 {
+            color: var(--elsa-blue);
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 15px;
+            margin-top: 18px;
+            margin-bottom: 6px;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 18px;
+            margin-top: 6px;
+            margin-bottom: 10px;
+        }
+
+        li {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 4px;
+        }
+
+        .tagline {
+            font-style: italic;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        .stat-line {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: rgba(0,76,151,0.07);
+            color: var(--elsa-blue);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .accent {
+            font-weight: 600;
+        }
+
+        .footnote {
+            font-size: 11px;
+            opacity: 0.8;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
 <header>
+    <div class="logo-block">
+        <!-- 
+            IMPORTANT :
+            Remplace le chemin ci-dessous par le vrai fichier de ton logo.
+            Par exemple : assets/logo-elsa-parisnanterre.png
+            Tu devras téléverser le logo dans ton dépôt GitHub.
+        -->
+        <img src="assets/logo-elsa-parisnanterre.png" alt="Logo ELSA Paris-Nanterre">
+        <div class="logo-text">
+            <span>ELSA PARIS-NANTERRE</span>
+            <span>Local Group • The European Law Students’ Association</span>
+        </div>
+    </div>
     <nav>
         <a href="index.html">Accueil</a>
-        <a href="about.html">Qui sommes-nous ?</a>
+        <a href="about.html">À propos</a>
         <a href="board.html">Board</a>
         <a href="activities.html">Activités</a>
         <a href="contact.html">Contact</a>
     </nav>
 </header>
 
-<div class="container">
-    <h1>Qui sommes-nous ?</h1>
+<section class="hero">
+    <div class="hero-kicker">À propos</div>
+    <h1 class="hero-title">La section ELSA de l’Université Paris Nanterre</h1>
+    <p class="hero-subtitle">
+        ELSA Paris-Nanterre est la section locale française de <span class="accent">The European Law Students’ Association</span>,
+        le plus grand réseau mondial d’étudiants en droit et de jeunes juristes. Nous ancrons à Nanterre une culture
+        juridique européenne, exigeante et tournée vers l’international.
+    </p>
+    <div class="hero-meta">
+        Membre du réseau ELSA France & ELSA International – basé à Bruxelles, présent dans plus de 40 pays et 400 facultés de droit.
+    </div>
+</section>
 
-    <p><strong>ELSA Paris-Nanterre</strong> est la section locale d’ELSA (The European Law Students’ Association) à l’Université Paris Nanterre. Nous faisons partie du plus grand réseau d’étudiants en droit au monde, présent dans plus de 44 pays.</p>
+<section class="grid">
+    <!-- Colonne 1 : identité, vision, mission -->
+    <article class="card">
+        <h2>Notre identité</h2>
+        <p>
+            ELSA – The European Law Students’ Association – est une association internationale, indépendante,
+            apolitique et à but non lucratif, gérée <em>par</em> et <em>pour</em> des étudiants en droit et jeunes juristes.
+            Le réseau rassemble aujourd’hui environ 60&nbsp;000 membres, présents dans plus de quarante pays européens
+            et plus de quatre cents facultés de droit. :contentReference[oaicite:2]{index=2}
+        </p>
+        <p>
+            <span class="accent">ELSA Paris-Nanterre</span> est la déclinaison locale de ce réseau au sein de l’Université Paris Nanterre.
+            Notre rôle est de rendre accessibles aux étudiants de Nanterre les opportunités académiques, internationales
+            et professionnelles portées par ELSA France et ELSA International, en les adaptant à l’écosystème spécifique de la faculté.
+        </p>
 
-    <p>Notre mission est de créer des opportunités académiques, culturelles et professionnelles pour les étudiants en droit, en favorisant :</p>
+        <h3>Vision</h3>
+        <p class="tagline">
+            « A just world in which there is respect for human dignity and cultural diversity. » :contentReference[oaicite:3]{index=3}
+        </p>
+        <p>
+            Concrètement, cela signifie que chaque projet mené à Nanterre – qu’il soit académique, professionnel
+            ou engagé – doit contribuer, à son échelle, à une culture juridique plus juste, plus exigeante et plus ouverte
+            aux pluralités (culturelles, sociales, disciplinaires).
+        </p>
 
-    <ul>
-        <li>l’échange international</li>
-        <li>la découverte du monde juridique européen</li>
-        <li>la formation continue par des conférences et workshops</li>
-        <li>la participation aux concours de plaidoirie et d'éloquence</li>
-        <li>le développement d’un réseau professionnel de haut niveau</li>
-    </ul>
+        <h3>Mission à Nanterre</h3>
+        <p>
+            Notre mission est double&nbsp;:
+        </p>
+        <ul>
+            <li>offrir aux étudiants de Paris Nanterre un accès privilégié à un réseau européen d’étudiants en droit,</li>
+            <li>structurer des activités locales de haut niveau (académiques, professionnelles et internationales) qui soient à la hauteur des standards d’ELSA.</li>
+        </ul>
+        <p>
+            ELSA Paris-Nanterre se situe ainsi à l’articulation entre la formation universitaire classique
+            et la préparation à des trajectoires juridico-européennes exigeantes, que ce soit en pratique juridique,
+            en affaires européennes, en organismes internationaux ou en recherche.
+        </p>
+    </article>
 
-    <p>En tant que section locale, nous collaborons avec :</p>
+    <!-- Colonne 2 : réseau, programmes, positionnement -->
+    <aside class="card">
+        <span class="pill">Le réseau ELSA</span>
+        <h3 style="margin-top: 10px;">Un ancrage local dans un réseau international</h3>
+        <p class="stat-line">
+            • Siège international : Bruxelles  
+            • Environ 60&nbsp;000 membres, 40+ pays, 400+ facultés de droit :contentReference[oaicite:4]{index=4}  
+            • Réseau d’étudiants et de jeunes juristes à forte dimension européenne
+        </p>
 
-    <ul>
-        <li>ELSA France</li>
-        <li>ELSA International</li>
-        <li>des universitaires et avocats</li>
-        <li>des entreprises et institutions européennes</li>
-    </ul>
+        <h3>Axes d’activité majeurs</h3>
+        <p>
+            En lien avec les programmes d’ELSA, nos activités se structurent autour de plusieurs axes :
+        </p>
+        <ul>
+            <li><span class="accent">Seminars & Conferences</span> : conférences, tables rondes, visites d’institutions, universités d’été.</li>
+            <li><span class="accent">Academic Activities</span> : groupes de travail, ateliers, projets académiques, initiatives en droits de l’homme. :contentReference[oaicite:5]{index=5}</li>
+            <li><span class="accent">Competitions</span> : concours de plaidoirie, concours d’éloquence, simulations, moots en droit européen et international.</li>
+            <li><span class="accent">Professional Development</span> : mise en réseau, rencontres avec des praticiens, information sur les ELSA Traineeships et autres opportunités de stage à l’étranger. :contentReference[oaicite:6]{index=6}</li>
+        </ul>
 
-    <p>Notre objectif : offrir aux étudiants de Nanterre un accès privilégié aux opportunités juridiques et européennes.</p>
-</div>
+        <h3>Positionnement d’ELSA Paris-Nanterre</h3>
+        <p>
+            La section de Nanterre assume un positionnement clairement sélectif sur le plan intellectuel&nbsp;:
+            l’objectif n’est pas de multiplier les événements, mais de privilégier des projets exigeants,
+            bien préparés, alignés sur les standards académiques et professionnels du réseau ELSA.
+        </p>
+        <p>
+            Cette exigence ne signifie pas fermeture&nbsp;: ELSA Paris-Nanterre reste ouverte à tous les étudiants
+            en droit, quel que soit leur parcours ou leur origine sociale. Elle propose un cadre structurant
+            pour celles et ceux qui souhaitent inscrire leur trajectoire dans une logique européenne et
+            internationale assumée.
+        </p>
+
+        <p class="footnote">
+            ELSA Paris-Nanterre agit en coordination avec ELSA France et les autres groupes locaux,
+            afin de garantir une cohérence de fond (valeurs, qualité académique) et de forme (identité
+            visuelle, standards de communication).
+        </p>
+    </aside>
+</section>
 
 </body>
 </html>

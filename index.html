@@ -3,53 +3,502 @@
 <head>
     <meta charset="UTF-8">
     <title>ELSA Paris-Nanterre</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
+        :root {
+            --elsa-blue: #004C97;
+            --elsa-light: #f5f6f7;
+            --text-main: #222222;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f5f6f7;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: var(--elsa-light);
+            color: var(--text-main);
         }
+
+        a {
+            color: inherit;
+        }
+
         header {
-            background-color: #004C97;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background-color: var(--elsa-blue);
             color: white;
-            padding: 15px 20px;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
+
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-block img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-text span:first-child {
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            font-size: 13px;
+        }
+
+        .logo-text span:last-child {
+            font-size: 11px;
+            opacity: 0.9;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
         nav a {
             color: white;
-            margin-right: 20px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 14px;
+            padding-bottom: 2px;
         }
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
+
+        nav a:hover {
+            text-decoration: underline;
         }
-        h1 {
-            color: #004C97;
+
+        nav a.active {
+            border-bottom: 2px solid #ffffff;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 32px auto 60px auto;
+            padding: 0 12px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 14px;
+            padding: 28px 26px 30px 26px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .hero {
+            margin-bottom: 28px;
+        }
+
+        .hero-kicker {
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--elsa-blue);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .hero-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            color: var(--elsa-blue);
+        }
+
+        .hero-subtitle {
+            font-size: 15px;
+            line-height: 1.5;
+            margin: 0 0 12px 0;
+        }
+
+        .hero-meta {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        h2 {
+            color: var(--elsa-blue);
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            color: var(--elsa-blue);
+            font-size: 16px;
+            margin-top: 18px;
+            margin-bottom: 6px;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin: 4px 0 8px 18px;
+            padding: 0;
+        }
+
+        li {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 4px;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: rgba(0,76,151,0.07);
+            color: var(--elsa-blue);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+            gap: 22px;
+        }
+
+        @media (max-width: 860px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            nav {
+                gap: 12px;
+            }
+            .two-columns {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .button-primary {
+            display: inline-block;
+            padding: 10px 18px;
+            background-color: var(--elsa-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .button-primary:hover {
+            filter: brightness(0.95);
+        }
+
+        .button-outline {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--elsa-blue);
+            color: var(--elsa-blue);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        .button-outline:hover {
+            background: rgba(0,76,151,0.05);
+        }
+
+        .board-list .role {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--elsa-blue);
+            margin-top: 10px;
+        }
+
+        .board-list .name {
+            font-weight: 400;
+            color: #333;
+        }
+
+        .activity-block {
+            margin-top: 10px;
+        }
+
+        .activity-block h3 {
+            margin-top: 10px;
+        }
+
+        .contact-list li {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .contact-list strong {
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 11px;
+            padding: 18px 10px 26px 10px;
+            color: #666;
         }
     </style>
+
+    <script>
+        // défilement doux vers les sections
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('header nav a[href^="#"]');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').slice(1);
+                    const target = document.getElementById(targetId);
+                    if (!target) return;
+
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const rect = target.getBoundingClientRect();
+                    const offset = rect.top + window.scrollY - headerHeight - 10;
+
+                    window.scrollTo({ top: offset, behavior: 'smooth' });
+                });
+            });
+
+            // surbrillance du lien actif lors du scroll
+            const sections = document.querySelectorAll('section[id]');
+            const options = { root: null, rootMargin: '0px', threshold: 0.4 };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        navLinks.forEach(l => {
+                            l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+                        });
+                    }
+                });
+            }, options);
+
+            sections.forEach(sec => observer.observe(sec));
+        });
+    </script>
 </head>
 <body>
 
 <header>
+    <div class="logo-block">
+        <!-- Remplace le chemin par ton vrai logo, une fois téléversé -->
+        <img src="assets/logo-elsa-parisnanterre.png" alt="Logo ELSA Paris-Nanterre">
+        <div class="logo-text">
+            <span>ELSA PARIS-NANTERRE</span>
+            <span>The European Law Students’ Association</span>
+        </div>
+    </div>
     <nav>
-        <a href="index.html">Accueil</a>
-        <a href="about.html">Qui sommes-nous ?</a>
-        <a href="board.html">Board</a>
-        <a href="activities.html">Activités</a>
-        <a href="contact.html">Contact</a>
+        <a href="#accueil" class="active">Accueil</a>
+        <a href="#apropos">À propos</a>
+        <a href="#board">Board</a>
+        <a href="#activites">Activités</a>
+        <a href="#contact">Contact</a>
     </nav>
 </header>
 
-<div class="container">
-    <h1>Bienvenue sur le site d’ELSA Paris-Nanterre</h1>
-    <p>La section locale d’ELSA (The European Law Students’ Association) à l’Université Paris Nanterre.</p>
-    <p>Nous organisons des conférences, concours, projets académiques et activités internationales destinées aux étudiants en droit.</p>
-</div>
+<main>
+
+    <!-- ACCUEIL -->
+    <section id="accueil" class="hero card">
+        <div class="hero-kicker">Section locale</div>
+        <h1 class="hero-title">ELSA Paris-Nanterre</h1>
+        <p class="hero-subtitle">
+            Section locale d’ELSA – The European Law Students’ Association – à l’Université Paris Nanterre.
+            Nous proposons aux étudiants en droit un ancrage européen, des opportunités académiques et des
+            activités exigeantes, à la croisée de l’université et du monde professionnel.
+        </p>
+        <p class="hero-meta">
+            Membre du réseau ELSA France et ELSA International (60&nbsp;000 membres, plus de 40 pays, plus de 400 facultés de droit).
+        </p>
+        <a href="#apropos" class="button-primary">Découvrir la section</a>
+    </section>
+
+    <!-- A PROPOS -->
+    <section id="apropos">
+        <div class="card two-columns">
+            <div>
+                <span class="pill">À propos</span>
+                <h2>Notre identité</h2>
+                <p>
+                    ELSA est une association internationale, indépendante, apolitique et à but non lucratif, gérée
+                    par et pour des étudiants en droit et de jeunes juristes. ELSA Paris-Nanterre est la déclinaison locale
+                    de ce réseau au sein de l’Université Paris Nanterre.
+                </p>
+                <p>
+                    Notre rôle est de rendre accessibles aux étudiants de Nanterre les opportunités académiques, internationales
+                    et professionnelles portées par ELSA France et ELSA International, en les adaptant à la réalité de la faculté.
+                </p>
+
+                <h3>Vision</h3>
+                <p>
+                    Contribuer, à l’échelle d’une section locale, à un monde juridique plus juste, plus exigeant et plus ouvert
+                    à la diversité des parcours, des cultures et des projets.
+                </p>
+
+                <h3>Mission à Nanterre</h3>
+                <p>
+                    Notre mission est double :
+                </p>
+                <ul>
+                    <li>offrir aux étudiants de Paris Nanterre un accès privilégié à un réseau européen d’étudiants en droit ;</li>
+                    <li>structurer des activités locales de haut niveau : académiques, professionnelles et internationales.</li>
+                </ul>
+                <a href="#activites" class="button-outline">Voir nos axes d’activité</a>
+            </div>
+
+            <div>
+                <span class="pill">Le réseau ELSA</span>
+                <h3>Un ancrage local dans un réseau international</h3>
+                <p>
+                    ELSA International est basée à Bruxelles et coordonne un réseau de sections nationales et locales en Europe.
+                    ELSA Paris-Nanterre s’inscrit dans ce cadre, en lien avec ELSA France et les autres groupes locaux.
+                </p>
+                <h3>Axes structurants</h3>
+                <ul>
+                    <li><strong>Seminars &amp; Conferences</strong> : conférences, tables rondes, visites d’institutions.</li>
+                    <li><strong>Academic Activities</strong> : ateliers, groupes de travail, projets académiques.</li>
+                    <li><strong>Competitions</strong> : concours de plaidoirie, d’éloquence, simulations.</li>
+                    <li><strong>Professional Development</strong> : rencontres avec des praticiens, informations sur les stages.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOARD -->
+    <section id="board">
+        <div class="card">
+            <span class="pill">Gouvernance</span>
+            <h2>Le Board d’ELSA Paris-Nanterre</h2>
+            <p>
+                Le Board est l’équipe dirigeante de la section : il assure la vision, la cohérence des projets
+                et la représentation de la section au sein du réseau ELSA.
+            </p>
+
+            <div class="board-list">
+                <p class="role">Président·e : <span class="name">[Nom]</span></p>
+                <p class="role">Vice-Président·e : <span class="name">[Nom]</span></p>
+                <p class="role">Secrétaire Général·e : <span class="name">[Nom]</span></p>
+                <p class="role">Trésorier·e : <span class="name">[Nom]</span></p>
+
+                <h3>Responsables de pôles</h3>
+                <p class="role">Responsable Seminars &amp; Conferences : <span class="name">[Nom]</span></p>
+                <p class="role">Responsable Academic Activities : <span class="name">[Nom]</span></p>
+                <p class="role">Responsable Competitions : <span class="name">[Nom]</span></p>
+                <p class="role">Responsable Marketing &amp; Communication : <span class="name">[Nom]</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTIVITES -->
+    <section id="activites">
+        <div class="card">
+            <span class="pill">Activités</span>
+            <h2>Ce que nous organisons</h2>
+            <p>
+                L’objectif n’est pas de multiplier les événements, mais de proposer des activités structurées,
+                cohérentes et utiles pour des trajectoires ambitieuses en droit et en affaires européennes.
+            </p>
+
+            <div class="activity-block">
+                <h3>Conférences &amp; rencontres</h3>
+                <p>
+                    Interventions de praticiens, universitaires, magistrats, institutions européennes ou internationales.
+                    Format privilégié : discussions exigeantes, temps de questions-réponses, préparation en amont.
+                </p>
+            </div>
+
+            <div class="activity-block">
+                <h3>Concours &amp; simulations</h3>
+                <p>
+                    Sélections locales pour des concours de plaidoirie, concours d’éloquence, simulations de procès ou de
+                    négociations, en lien avec les standards ELSA et les concours nationaux/internationaux.
+                </p>
+            </div>
+
+            <div class="activity-block">
+                <h3>Projets académiques</h3>
+                <p>
+                    Ateliers de méthodologie, groupes de lecture, projets en lien avec le droit européen et international,
+                    initiatives droits de l’homme, contributions éventuelles à des Law Reviews.
+                </p>
+            </div>
+
+            <div class="activity-block">
+                <h3>Ouverture internationale</h3>
+                <p>
+                    Mise en avant des opportunités du réseau ELSA (événements internationaux, stages, formations)
+                    et accompagnement des étudiants qui visent des parcours sélectifs et transnationaux.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="card">
+            <span class="pill">Contact & adhésion</span>
+            <h2>Nous contacter et nous rejoindre</h2>
+            <p>
+                Pour toute question, pour proposer un partenariat ou pour rejoindre ELSA Paris-Nanterre, vous pouvez
+                utiliser les canaux suivants.
+            </p>
+
+            <ul class="contact-list">
+                <li><strong>Email :</strong> elsa.parisnanterre@gmail.com</li>
+                <li><strong>Instagram :</strong> @elsa_parisnanterre</li>
+                <li><strong>LinkedIn :</strong> ELSA Paris-Nanterre</li>
+            </ul>
+
+            <p>
+                L’adhésion ouvre l’accès à l’ensemble des activités de la section, ainsi qu’au réseau ELSA France
+                et ELSA International.
+            </p>
+
+            <!-- Tu remplaceras # par ton futur lien HelloAsso -->
+            <a href="#" class="button-primary">Adhérer (bientôt disponible)</a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    ELSA Paris-Nanterre – Section locale d’ELSA France · Site statique hébergé sur GitHub Pages
+</footer>
 
 </body>
 </html>
